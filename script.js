@@ -1,6 +1,6 @@
 "use strict";
 
-const main = document.querySelector(".main");
+const header = document.querySelector(".header");
 const darkMode = document.querySelector(".moon__icon");
 const lightMode = document.querySelector(".light__icon");
 const body = document.querySelector("body");
@@ -9,12 +9,10 @@ const todoInput = document.querySelector(".todo__input ");
 const todoListBox = document.querySelector(".todo__list-box");
 const todoInputField = document.querySelector(".todo__input");
 const todoTextBox = document.querySelector(".todo__text-box ");
-// const checkIcon = document.querySelectorAll(".check__icon"); // .checked__icon display when clicked
 const todoLists = document.querySelectorAll(".todo__list");
-const todoText = document.querySelectorAll(".todo__text"); // .checked__text  add when checked__icon is displayed
+const todoText = document.querySelectorAll(".todo__text");
 const checkedText = document.querySelectorAll(".checked__text");
 const deleteTodoText = document.querySelectorAll(".remove__icon");
-// const itemsLeftNum = document.querySelector(".items__left--num");
 const summaryBox = document.querySelector(".summary__box");
 const todoStates = document.querySelector(".todo__states");
 const allStates = document.querySelector(".all__states");
@@ -47,6 +45,7 @@ let todos = document.querySelectorAll(".todo__list");
 
 // Function to add a new todo item to the list
 const addToList = function (upper) {
+  // Add the new todo item to the end of the todo list
   todoTextBox.insertAdjacentHTML(
     "beforeend",
     `
@@ -62,29 +61,30 @@ const addToList = function (upper) {
     `
   );
 
-  // Update the todos list and items left count
+  // Update the list of todo items and the count of items left
   todos = document.querySelectorAll(".todo__list:not(.checked__icon)");
   itemsLeftNum.textContent = todos.length;
 
-  // Set the color of the new todo item based on the selected mode
+  // Select the text of the added todo item and update its color based on the currently selected mode
   const addedTodoText =
     todoTextBox.lastElementChild.querySelector(".todo__text");
-
   if (lightMode.style.display === "none") {
     addedTodoText.style.color = "#25273c";
   } else if (darkMode.style.display === "none") {
     addedTodoText.style.color = "#fafafa";
   }
 
-  // Event handler for todo item clicks
+  // Function to handle clicks on todo items
   function handleTodoClick(e) {
     if (e.target.classList.contains("check__icon")) {
+      // Toggle the "checked" status of the clicked todo item
       e.target.classList.toggle("checked__icon");
       e.target
         .closest(".todo__list")
         .querySelector(".todo__text")
         .classList.toggle("checked__text");
 
+      // Update the count of items left based on the number of checked items
       const todos = document.querySelectorAll(".todo__list");
       let checkedItemsCount = 0;
       todos.forEach((todo) => {
@@ -98,10 +98,8 @@ const addToList = function (upper) {
     }
 
     if (e.target.classList.contains("remove__icon")) {
-      // Remove the todo item
+      // Remove the clicked todo item and update the count of items left
       e.target.closest(".todo__list").remove();
-
-      // Update the items left count
       const todos = document.querySelectorAll(
         ".todo__list:not(.checked__icon)"
       );
@@ -109,20 +107,24 @@ const addToList = function (upper) {
     }
   }
 
-  // Add event listener for todo item clicks
+  // Add event listeners for clicks on the added todo item
   todoTextBox.addEventListener("click", handleTodoClick);
 };
 
+// Function to show only the checked todo items
 const showCheckedTodos = function () {
   const todos = Array.from(document.querySelectorAll(".todo__list"));
 
   todoTextBox.textContent = ""; // clear previous contents
 
+  // Loop through all the todos
   todos.forEach(function (todo) {
     const checkedIcon = todo.querySelector(".checked__icon");
+    // Check if the todo has a checked icon
     if (checkedIcon) {
       const todoText = todo.querySelector(".todo__text").textContent;
 
+      // Insert the checked todo item in the todoTextBox
       todoTextBox.insertAdjacentHTML(
         "beforeend",
         `<div class="todo__list"><div class="check__icon checked__icon"></div><p class="todo__text">${todoText}</p><img src="images/icon-cross.svg" alt="add icon" class="remove__icon"></div>`
@@ -131,16 +133,20 @@ const showCheckedTodos = function () {
   });
 };
 
+// This function shows all the todo items that have not been checked.
 const showUnCheckedTodos = function () {
   const todos = Array.from(document.querySelectorAll(".todo__list"));
 
   todoTextBox.textContent = ""; // clear previous contents
 
+  // Loop through all the todos
   todos.forEach(function (todo) {
     const checkedIcon = todo.querySelector(".checked__icon");
+    // Check if the todo does not have a checked icon
     if (!checkedIcon) {
       const todoText = todo.querySelector(".todo__text").textContent;
 
+      // Insert the unchecked todo item in the todoTextBox
       todoTextBox.insertAdjacentHTML(
         "beforeend",
         `<div class="todo__list"><div class="check__icon"></div><p class="todo__text">${todoText}</p><img src="images/icon-cross.svg" alt="add icon" class="remove__icon"></div>`
@@ -149,11 +155,17 @@ const showUnCheckedTodos = function () {
   });
 };
 
+// This function filters the todo items based on the selected state (All, Active, Completed)
+
 const filterTodo = function (e) {
+  // Remove the clicked__states class from all the filter buttons
+
   allStates.classList.remove("clicked__states");
   activeStates.classList.remove("clicked__states");
   completedStates.classList.remove("clicked__states");
   clearCompleted.classList.remove("clicked__states");
+
+  // Show all the todo items when the All button is clicked
 
   if (e.target.classList.contains("all__states")) {
     e.target.classList.add("clicked__states");
@@ -163,9 +175,11 @@ const filterTodo = function (e) {
     });
   }
 
+  // Show only the unchecked todo items when the Active button is clicked
   if (e.target.classList.contains("active__states")) {
     e.target.classList.add("clicked__states");
     const todoItems = document.querySelectorAll(".todo__list");
+    // Loop through all the todo items and display only the unchecked items
     todoItems.forEach((item) => {
       const checkedIcon = item.querySelector(".checked__icon");
       if (!checkedIcon) {
@@ -176,9 +190,11 @@ const filterTodo = function (e) {
     });
   }
 
+  // Show only the checked todo items when the Completed button is clicked
   if (e.target.classList.contains("completed__states")) {
     e.target.classList.add("clicked__states");
     const todoItems = document.querySelectorAll(".todo__list");
+    // Loop through all the todo items and display only the checked items
     todoItems.forEach((item) => {
       const checkedIcon = item.querySelector(".checked__icon");
       if (checkedIcon) {
@@ -189,6 +205,7 @@ const filterTodo = function (e) {
     });
   }
 
+  // Deletes all the checked todo items when the clear Completed button is clicked
   if (e.target.classList.contains("clear__completed")) {
     e.target.classList.add("clicked__states");
     const checkedTodos = document.querySelectorAll(".checked__icon");
@@ -200,12 +217,15 @@ const filterTodo = function (e) {
   }
 };
 
+// Add event listener to the summaryBox element and call filterTodo function when clicked
 summaryBox.addEventListener("click", filterTodo);
 
+// Function to clear the todoInput value
 const clearTodoInput = function () {
   todoInput.value = "";
 };
 
+// Function to handle when the enter key is pressed
 const handleEnterKey = function (e) {
   if (e.key === "Enter") {
     if (todoInput.value === "") {
@@ -214,17 +234,27 @@ const handleEnterKey = function (e) {
     } else {
       todoInput.style.border = "none";
     }
+
+    // Get the trimmed value of the todoInput and format it to have the first letter uppercase and the rest lowercase
     const value = todoInput.value.trim();
     const upper =
       value.slice(0, 1).toUpperCase() + value.slice(1).toLowerCase();
+
+    // Add the formatted value to the todo list by calling the addToList function and passing in the formatted value
     addToList(upper);
+
+    // Call the clearTodoInput function to clear the todoInput value
     clearTodoInput();
   }
 };
 
+// Function to remove a todo item
 const removeTodoItem = function (e) {
+  // Check if the clicked element has the class of "remove__icon"
   if (e.target.classList.contains("remove__icon")) {
+    // Remove the closest parent element with the class of "todo__list"
     e.target.closest(".todo__list").remove();
+    // Update the itemsLeftNum element with the number of todos remaining
     const todos = document.querySelectorAll(".todo__list").length;
     itemsLeftNum.textContent = todos;
   }
@@ -240,7 +270,7 @@ const dispLightMode = function () {
   todoListBox.style.backgroundColor = "#fafafa";
   todoInput.style.color = "#161722";
   checkedText.forEach((text) => (text.style.color = "#cacde8"));
-  main.style.backgroundImage = "url(images/bg-desktop-light.jpg)";
+  header.style.backgroundImage = "url(images/bg-desktop-light.jpg)";
   summaryBox.style.color = "#25273c";
 
   updateTodoColors();
@@ -255,7 +285,7 @@ const dispDarkMode = function () {
   todoListBox.style.backgroundColor = "#161722";
   todoInput.style.color = "#fafafa";
   checkedText.forEach((text) => (text.style.color = "#777a92"));
-  main.style.backgroundImage = "url(images/bg-desktop-dark.jpg)";
+  header.style.backgroundImage = "url(images/bg-desktop-dark.jpg)";
   summaryBox.style.color = "#777a92";
 
   updateTodoColors();

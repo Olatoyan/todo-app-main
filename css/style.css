@@ -35,21 +35,27 @@ html {
 body {
   font-family: "Josefin Sans", sans-serif;
   background-color: #25273c;
-  height: 100vh;
+  height: 100%;
   position: relative;
   color: #fafafa;
   letter-spacing: 1px;
 }
-.main {
+.header {
   background-image: url(../images/bg-desktop-dark.jpg);
   background-size: cover;
   height: 40vh;
 }
+
+.main {
+  display: flex;
+  justify-content: center;
+  margin-top: -20rem;
+}
 .main__section {
-  position: absolute;
-  top: 40%;
+  /* position: absolute; */
+  /* top: 100%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
   width: 45rem;
   box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.3);
 
@@ -186,7 +192,7 @@ body {
 
 /* UTILITIES */
 body,
-.main,
+.header,
 .input__box,
 .todo__input,
 .todo__list-box,
@@ -221,5 +227,6 @@ body,
     font-size: 0.8rem;
   }
 }
+
 /* .attribution { font-size: 11px; text-align: center; }
 .attribution a { color: hsl(228, 45%, 44%); } */
