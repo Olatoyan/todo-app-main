@@ -23,9 +23,13 @@ const completedStates = document.querySelector(".completed__states");
 const clearCompleted = document.querySelector(".clear__completed");
 
 todoTextBox.textContent = "";
+
+// Function to update todo colors based on the selected mode
 function updateTodoColors() {
   const addedTodoText = todoTextBox.querySelectorAll(".todo__text");
   addedTodoText.forEach((text) => {
+    // Loop through each added todo item and update its color based on the currently selected mode
+
     if (lightMode.style.display === "none") {
       text.style.color = "#25273c";
     } else if (darkMode.style.display === "none") {
@@ -34,11 +38,14 @@ function updateTodoColors() {
   });
 }
 
+// Select all the remove icons and the items left count element
 const del = document.querySelectorAll(".remove__icon");
 const itemsLeftNum = document.querySelector(".items__left--num");
 
+// Select all the todo items
 let todos = document.querySelectorAll(".todo__list");
 
+// Function to add a new todo item to the list
 const addToList = function (upper) {
   todoTextBox.insertAdjacentHTML(
     "beforeend",
@@ -55,8 +62,11 @@ const addToList = function (upper) {
     `
   );
 
+  // Update the todos list and items left count
   todos = document.querySelectorAll(".todo__list:not(.checked__icon)");
   itemsLeftNum.textContent = todos.length;
+
+  // Set the color of the new todo item based on the selected mode
   const addedTodoText =
     todoTextBox.lastElementChild.querySelector(".todo__text");
 
@@ -66,6 +76,7 @@ const addToList = function (upper) {
     addedTodoText.style.color = "#fafafa";
   }
 
+  // Event handler for todo item clicks
   function handleTodoClick(e) {
     if (e.target.classList.contains("check__icon")) {
       e.target.classList.toggle("checked__icon");
@@ -87,7 +98,10 @@ const addToList = function (upper) {
     }
 
     if (e.target.classList.contains("remove__icon")) {
+      // Remove the todo item
       e.target.closest(".todo__list").remove();
+
+      // Update the items left count
       const todos = document.querySelectorAll(
         ".todo__list:not(.checked__icon)"
       );
@@ -95,6 +109,7 @@ const addToList = function (upper) {
     }
   }
 
+  // Add event listener for todo item clicks
   todoTextBox.addEventListener("click", handleTodoClick);
 };
 
