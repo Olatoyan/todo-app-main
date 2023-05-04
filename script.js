@@ -96,8 +96,6 @@ const addToList = function (upper) {
   }
 
   todoTextBox.addEventListener("click", handleTodoClick);
-
-  todoTextBox.addEventListener("click", handleTodoClick);
 };
 
 const showCheckedTodos = function () {
