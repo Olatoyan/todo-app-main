@@ -206,5 +206,20 @@ body,
 .light__icon {
   cursor: pointer;
 }
+
+/* MEDIA QUERIES */
+
+@media only screen and (max-width: 31.25em) {
+  .main__section {
+    width: 100vw;
+  }
+
+  .all__states,
+  .active__states,
+  .completed__states,
+  .clear__completed {
+    font-size: 0.8rem;
+  }
+}
 /* .attribution { font-size: 11px; text-align: center; }
 .attribution a { color: hsl(228, 45%, 44%); } */

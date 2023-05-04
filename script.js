@@ -34,175 +34,6 @@ function updateTodoColors() {
   });
 }
 
-// const addToList = function (upper) {
-//   todoTextBox.insertAdjacentHTML(
-//     "beforeend",
-//     `
-//       <div class="todo__list">
-//         <div class="check__icon"></div>
-//         <p class="todo__text">${upper}</p>
-//         <img
-//           src="images/icon-cross.svg"
-//           alt="add icon"
-//           class="remove__icon"
-//         />
-//       </div>
-//     `
-//   );
-
-//   let todos = document.querySelectorAll(".todo__list").length;
-//   todos.forEach(function (todo) {
-//     console.log(todo);
-//   });
-//   const del = document.querySelectorAll(".remove__icon");
-//   todoTextBox.addEventListener("click", function (e) {
-//     console.log(e.target);
-//     if (e.target.classList.contains("check__icon")) {
-//       const isChecked = e.target.classList.toggle("checked__icon");
-//       if (isChecked) {
-//         todos--;
-//       } else {
-//         todos++;
-//       }
-
-//       if (e.target.closest(".todo__list")) {
-//         e.target.parentNode
-//           .querySelector(".todo__text")
-//           .classList.toggle("checked__text");
-//       }
-//     }
-//     if (e.target.classList.contains("remove__icon")) {
-//       e.target.closest(".todo__list").remove();
-//       todos--;
-//     }
-//     itemsLeftNum.textContent = todos;
-//   });
-
-//   itemsLeftNum.textContent = todos;
-//   const addedTodoText =
-//     todoTextBox.lastElementChild.querySelector(".todo__text");
-
-//   if (lightMode.style.display === "none") {
-//     addedTodoText.style.color = "#25273c";
-//   } else if (darkMode.style.display === "none") {
-//     addedTodoText.style.color = "#fafafa";
-//   }
-// };
-
-let s;
-
-// let todos = document.querySelectorAll(".todo__list");
-// const del = document.querySelectorAll(".remove__icon");
-
-// function handleTodoClick(e) {
-//   if (e.target.classList.contains("check__icon")) {
-//     const isChecked = e.target.classList.toggle("checked__icon");
-//     if (isChecked) {
-//       todos--;
-//     } else {
-//       todos++;
-//     }
-
-//     if (e.target.closest(".todo__list")) {
-//       e.target.parentNode
-//         .querySelector(".todo__text")
-//         .classList.toggle("checked__text");
-//     }
-//   }
-//   if (e.target.classList.contains("remove__icon")) {
-//     e.target.closest(".todo__list").remove();
-//     todos--;
-//   }
-//   itemsLeftNum.textContent = todos.length;
-// }
-
-// todoTextBox.addEventListener("click", handleTodoClick);
-
-// const addToList = function (upper) {
-//   todoTextBox.insertAdjacentHTML(
-//     "beforeend",
-//     `
-//       <div class="todo__list">
-//         <div class="check__icon"></div>
-//         <p class="todo__text">${upper}</p>
-//         <img
-//           src="images/icon-cross.svg"
-//           alt="add icon"
-//           class="remove__icon"
-//         />
-//       </div>
-//     `
-//   );
-
-//   itemsLeftNum.textContent = todos.length;
-//   const addedTodoText =
-//     todoTextBox.lastElementChild.querySelector(".todo__text");
-
-//   if (lightMode.style.display === "none") {
-//     addedTodoText.style.color = "#25273c";
-//   } else if (darkMode.style.display === "none") {
-//     addedTodoText.style.color = "#fafafa";
-//   }
-// };
-let h;
-
-// console.log(todos);
-// let todos = document.querySelectorAll(".todo__list").length;
-let ha;
-// const del = document.querySelectorAll(".remove__icon");
-// const itemsLeftNum = document.querySelector(".items__left--num");
-
-// const addToList = function (upper) {
-//   todoTextBox.insertAdjacentHTML(
-//     "beforeend",
-//     `
-//       <div class="todo__list">
-//         <div class="check__icon"></div>
-//         <p class="todo__text">${upper}</p>
-//         <img
-//           src="images/icon-cross.svg"
-//           alt="add icon"
-//           class="remove__icon"
-//         />
-//       </div>
-//     `
-//   );
-
-//   let todos = document.querySelectorAll(".todo__list");
-//   itemsLeftNum.textContent = todos.length;
-//   const addedTodoText =
-//     todoTextBox.lastElementChild.querySelector(".todo__text");
-
-//   if (lightMode.style.display === "none") {
-//     addedTodoText.style.color = "#25273c";
-//   } else if (darkMode.style.display === "none") {
-//     addedTodoText.style.color = "#fafafa";
-//   }
-
-//   function handleTodoClick(e) {
-//     if (e.target.classList.contains("check__icon")) {
-//       const isChecked = e.target.classList.toggle("checked__icon");
-//       if (isChecked) {
-//         todos--;
-//       } else {
-//         todos++;
-//       }
-
-//       if (e.target.closest(".todo__list")) {
-//         e.target.parentNode
-//           .querySelector(".todo__text")
-//           .classList.toggle("checked__text");
-//       }
-//     }
-//     if (e.target.classList.contains("remove__icon")) {
-//       e.target.closest(".todo__list").remove();
-//       todos--;
-//     }
-//     itemsLeftNum.textContent = todos.length;
-//   }
-
-//   todoTextBox.addEventListener("click", handleTodoClick);
-// };
 const del = document.querySelectorAll(".remove__icon");
 const itemsLeftNum = document.querySelector(".items__left--num");
 
@@ -238,29 +69,125 @@ const addToList = function (upper) {
   function handleTodoClick(e) {
     if (e.target.classList.contains("check__icon")) {
       e.target.classList.toggle("checked__icon");
-      todos = document.querySelectorAll(".todo__list:not(.checked__icon)");
-      itemsLeftNum.textContent = parseInt(todos.length);
+      e.target
+        .closest(".todo__list")
+        .querySelector(".todo__text")
+        .classList.toggle("checked__text");
 
-      if (e.target.classList.contains("checked__icon")) {
-        itemsLeftNum.textContent = parseInt(itemsLeftNum.textContent) - 1;
-      } else {
-        itemsLeftNum.textContent = parseInt(itemsLeftNum.textContent);
-      }
-      if (e.target.closest(".todo__list")) {
-        e.target.parentNode
-          .querySelector(".todo__text")
-          .classList.toggle("checked__text");
-      }
+      const todos = document.querySelectorAll(".todo__list");
+      let checkedItemsCount = 0;
+      todos.forEach((todo) => {
+        if (
+          todo.querySelector(".check__icon").classList.contains("checked__icon")
+        ) {
+          checkedItemsCount++;
+        }
+      });
+      itemsLeftNum.textContent = todos.length - checkedItemsCount;
     }
+
     if (e.target.classList.contains("remove__icon")) {
       e.target.closest(".todo__list").remove();
-      todos = document.querySelectorAll(".todo__list:not(.checked__icon)");
-      itemsLeftNum.textContent = parseInt(todos.length);
+      const todos = document.querySelectorAll(
+        ".todo__list:not(.checked__icon)"
+      );
+      itemsLeftNum.textContent = todos.length;
     }
   }
 
   todoTextBox.addEventListener("click", handleTodoClick);
+
+  todoTextBox.addEventListener("click", handleTodoClick);
 };
+
+const showCheckedTodos = function () {
+  const todos = Array.from(document.querySelectorAll(".todo__list"));
+
+  todoTextBox.textContent = ""; // clear previous contents
+
+  todos.forEach(function (todo) {
+    const checkedIcon = todo.querySelector(".checked__icon");
+    if (checkedIcon) {
+      const todoText = todo.querySelector(".todo__text").textContent;
+
+      todoTextBox.insertAdjacentHTML(
+        "beforeend",
+        `<div class="todo__list"><div class="check__icon checked__icon"></div><p class="todo__text">${todoText}</p><img src="images/icon-cross.svg" alt="add icon" class="remove__icon"></div>`
+      );
+    }
+  });
+};
+
+const showUnCheckedTodos = function () {
+  const todos = Array.from(document.querySelectorAll(".todo__list"));
+
+  todoTextBox.textContent = ""; // clear previous contents
+
+  todos.forEach(function (todo) {
+    const checkedIcon = todo.querySelector(".checked__icon");
+    if (!checkedIcon) {
+      const todoText = todo.querySelector(".todo__text").textContent;
+
+      todoTextBox.insertAdjacentHTML(
+        "beforeend",
+        `<div class="todo__list"><div class="check__icon"></div><p class="todo__text">${todoText}</p><img src="images/icon-cross.svg" alt="add icon" class="remove__icon"></div>`
+      );
+    }
+  });
+};
+
+const filterTodo = function (e) {
+  allStates.classList.remove("clicked__states");
+  activeStates.classList.remove("clicked__states");
+  completedStates.classList.remove("clicked__states");
+  clearCompleted.classList.remove("clicked__states");
+
+  if (e.target.classList.contains("all__states")) {
+    e.target.classList.add("clicked__states");
+    const todoItems = document.querySelectorAll(".todo__list");
+    todoItems.forEach((item) => {
+      item.style.display = "flex";
+    });
+  }
+
+  if (e.target.classList.contains("active__states")) {
+    e.target.classList.add("clicked__states");
+    const todoItems = document.querySelectorAll(".todo__list");
+    todoItems.forEach((item) => {
+      const checkedIcon = item.querySelector(".checked__icon");
+      if (!checkedIcon) {
+        item.style.display = "flex";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  }
+
+  if (e.target.classList.contains("completed__states")) {
+    e.target.classList.add("clicked__states");
+    const todoItems = document.querySelectorAll(".todo__list");
+    todoItems.forEach((item) => {
+      const checkedIcon = item.querySelector(".checked__icon");
+      if (checkedIcon) {
+        item.style.display = "flex";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  }
+
+  if (e.target.classList.contains("clear__completed")) {
+    e.target.classList.add("clicked__states");
+    const checkedTodos = document.querySelectorAll(".checked__icon");
+    checkedTodos.forEach(function (todo) {
+      todo.closest(".todo__list").remove();
+    });
+    const todos = document.querySelectorAll(".todo__list").length;
+    itemsLeftNum.textContent = todos;
+  }
+};
+
+summaryBox.addEventListener("click", filterTodo);
 
 const clearTodoInput = function () {
   todoInput.value = "";
@@ -324,4 +251,3 @@ const dispDarkMode = function () {
 document.addEventListener("keypress", handleEnterKey);
 lightMode.addEventListener("click", dispLightMode);
 darkMode.addEventListener("click", dispDarkMode);
-// todoTextBox.addEventListener("click", removeTodoItem);
