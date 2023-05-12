@@ -52,10 +52,6 @@ body {
   margin-top: -20rem;
 }
 .main__section {
-  /* position: absolute; */
-  /* top: 100%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
   width: 45rem;
   box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.3);
 
