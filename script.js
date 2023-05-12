@@ -21,6 +21,7 @@ const completedStates = document.querySelector(".completed__states");
 const clearCompleted = document.querySelector(".clear__completed");
 
 todoTextBox.textContent = "";
+let s;
 
 // Function to update todo colors based on the selected mode
 function updateTodoColors() {
